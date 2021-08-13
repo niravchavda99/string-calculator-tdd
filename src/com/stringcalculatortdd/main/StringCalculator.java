@@ -11,7 +11,9 @@ public class StringCalculator {
         return Integer.parseInt(number);
     }
 
-    private int calculateSum(String... numbers) {
+    private int calculateSum(String... numbers) throws NegativeNumberException {
+        checkNegativeNumbers(numbers);
+
         int sum = 0;
 
         for(String number : numbers) {
@@ -41,7 +43,13 @@ public class StringCalculator {
         }
     }
 
-    public int Add(String numbers) {
+    private void checkNegativeNumbers(String... numbers) throws NegativeNumberException {
+        for(String number : numbers) {
+            if(isNumeric(number) && convertToInteger(number) < 0) throw new NegativeNumberException("Cannot have negative numbers!");
+        }
+    }
+
+    public int Add(String numbers) throws NegativeNumberException {
         if(isTextEmpty(numbers))
             return 0;
 
