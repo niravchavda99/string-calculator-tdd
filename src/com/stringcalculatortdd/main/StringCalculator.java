@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class StringCalculator {
     private String delimiters = "[,\n]";
+    private static int calledCount = 0;
 
     private boolean isTextEmpty(String numbers) {
         return numbers.isEmpty();
@@ -57,6 +58,8 @@ public class StringCalculator {
     }
 
     public int Add(String numbers) throws NegativeNumberException {
+        ++calledCount;
+
         if(isTextEmpty(numbers))
             return 0;
 
@@ -70,6 +73,6 @@ public class StringCalculator {
     }
 
     public int getCalledCount() {
-        return 0;
+        return calledCount;
     }
 }
