@@ -63,12 +63,19 @@ public class StringCalculatorTest {
     }
 
     // Test for getting called count
-    public void getCalledConuntReturnsCount() throws NegativeNumberException {
+    public void getCalledCountReturnsCount() throws NegativeNumberException {
         StringCalculator calci = new StringCalculator();
         calci.Add("5");
         calci.Add("1,5");
         calci.Add("1,5,9");
 
         AssertJUnit.assertEquals(3, calci.getCalledCount());
+    }
+
+    // Test for numbers greater than 1000
+    public void numbersGreaterThan1000AreIgnored() throws NegativeNumberException {
+        AssertJUnit.assertEquals(2, calculator.Add("//;\n1001;2"));
+        AssertJUnit.assertEquals(10, calculator.Add("//;\n4;1005;6"));
+        AssertJUnit.assertEquals(9, calculator.Add("//?\n4?5?1185"));
     }
 }
