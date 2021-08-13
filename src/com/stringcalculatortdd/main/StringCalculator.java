@@ -55,7 +55,6 @@ public class StringCalculator {
                 delimiters += customDelimiter + "|";
 
             delimiters += "\n";
-            System.out.println(delimiters);
         } else {
             delimiters = ",|\n";
         }
