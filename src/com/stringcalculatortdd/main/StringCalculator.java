@@ -45,7 +45,7 @@ public class StringCalculator {
 
     private void checkNegativeNumbers(String... numbers) throws NegativeNumberException {
         for(String number : numbers) {
-            if(isNumeric(number) && convertToInteger(number) < 0) throw new NegativeNumberException("Cannot have negative numbers!");
+            if(isNumeric(number) && convertToInteger(number) < 0) throw new NegativeNumberException("Cannot have negative numbers!\n Found: " + number);
         }
     }
 
