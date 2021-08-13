@@ -3,7 +3,7 @@ package com.stringcalculatortdd.main;
 import java.util.ArrayList;
 
 public class StringCalculator {
-    private String delimiters = "[,\n]";
+    private String delimiters = ",|\n";
     private static int calledCount = 0;
 
     private boolean isTextEmpty(String numbers) {
@@ -40,12 +40,17 @@ public class StringCalculator {
     }
 
     private void setDelimiters(String numbers) {
-        if(isTextEmpty(numbers)) delimiters = "[,\n]";
+        if(isTextEmpty(numbers)) delimiters = ",|\n";
         if(numbers.startsWith("//")) {
-            String customDelimiter = numbers.substring(2, 3);
-            delimiters = "[" + customDelimiter + "\n]";
+            String[] customDelimiters = numbers.substring(2, numbers.indexOf('\n')).split("[|]|\n");
+
+            delimiters = "";
+            for(String customDelimiter : customDelimiters)
+                delimiters += customDelimiter + "|";
+
+            delimiters += "\n";
         } else {
-            delimiters = "[,\n]";
+            delimiters = ",|\n";
         }
     }
 

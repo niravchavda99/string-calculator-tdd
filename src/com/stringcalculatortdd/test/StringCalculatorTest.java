@@ -51,7 +51,7 @@ public class StringCalculatorTest {
     public void numbersSeperatedByCustomDelimitersReturnsSum() throws NegativeNumberException {
         AssertJUnit.assertEquals(3, calculator.Add("//;\n1;2"));
         AssertJUnit.assertEquals(15, calculator.Add("//;\n4;5;6"));
-        AssertJUnit.assertEquals(15, calculator.Add("//?\n4?5?6"));
+        AssertJUnit.assertEquals(15, calculator.Add("//:\n4:5:6"));
     }
 
     // Test for negative numbers
@@ -76,6 +76,11 @@ public class StringCalculatorTest {
     public void numbersGreaterThan1000AreIgnored() throws NegativeNumberException {
         AssertJUnit.assertEquals(2, calculator.Add("//;\n1001;2"));
         AssertJUnit.assertEquals(10, calculator.Add("//;\n4;1005;6"));
-        AssertJUnit.assertEquals(9, calculator.Add("//?\n4?5?1185"));
+        AssertJUnit.assertEquals(9, calculator.Add("//:\n4:5:1185"));
+    }
+
+    // Test for multiple length delimiters
+    public void numbersSeperatedByMultipleLengthDelimitersReturnsSum() throws NegativeNumberException {
+        AssertJUnit.assertEquals(6, calculator.Add("//[***]\n1***2***3"));
     }
 }
