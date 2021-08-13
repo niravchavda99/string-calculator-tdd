@@ -19,14 +19,23 @@ public class StringCalculatorTest {
         AssertJUnit.assertEquals(0, calculator.Add(""));
     }
 
+    // Test for single number input
     public void singleNumberReturnsItself() {
         AssertJUnit.assertEquals(1, calculator.Add("1"));
         AssertJUnit.assertEquals(2, calculator.Add("2"));
         AssertJUnit.assertEquals(7, calculator.Add("7"));
     }
 
+    // Test for two comma seperated number input
     public void twoNumbersSeperatedByCommaReturnsSum() {
         AssertJUnit.assertEquals(3, calculator.Add("1,2"));
         AssertJUnit.assertEquals(9, calculator.Add("4,5"));
+    }
+
+    // Test for multiple comma seperated number input
+    public void multipleNumbersSeperatedByCommaReturnsSum() {
+        AssertJUnit.assertEquals(3, calculator.Add("1,2"));
+        AssertJUnit.assertEquals(15, calculator.Add("4,5,6"));
+        AssertJUnit.assertEquals(10, calculator.Add("1,2,3,4"));
     }
 }

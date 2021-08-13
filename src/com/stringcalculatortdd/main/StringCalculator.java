@@ -9,8 +9,13 @@ public class StringCalculator {
         return Integer.parseInt(number);
     }
 
-    private int calculateSum(String number1, String number2) {
-        return convertToInteger(number1) + convertToInteger(number2);
+    private int calculateSum(String... numbers) {
+        int sum = 0;
+
+        for(String number : numbers)
+            sum += convertToInteger(number);
+
+        return sum;
     }
 
     public int Add(String numbers) {
@@ -21,6 +26,6 @@ public class StringCalculator {
         if(numbers.length() == 1)
             return convertToInteger(numbers);
         else
-            return calculateSum(numberList[0], numberList[1]);
+            return calculateSum(numberList);
     }
 }
