@@ -1,5 +1,7 @@
 package com.stringcalculatortdd.main;
 
+import java.util.ArrayList;
+
 public class StringCalculator {
     private String delimiters = "[,\n]";
 
@@ -44,8 +46,13 @@ public class StringCalculator {
     }
 
     private void checkNegativeNumbers(String... numbers) throws NegativeNumberException {
-        for(String number : numbers) {
-            if(isNumeric(number) && convertToInteger(number) < 0) throw new NegativeNumberException("Cannot have negative numbers!\n Found: " + number);
+        ArrayList<String> negativeNumbers = new ArrayList<>();
+
+        for(String number : numbers)
+            if(isNumeric(number) && convertToInteger(number) < 0) negativeNumbers.add(number);
+
+        if(!negativeNumbers.isEmpty())  {
+            throw new NegativeNumberException("Cannot have negative numbers!\nFound: " + negativeNumbers.toString());
         }
     }
 
