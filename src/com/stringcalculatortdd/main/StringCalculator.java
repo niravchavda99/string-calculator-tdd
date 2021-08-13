@@ -1,7 +1,7 @@
 package com.stringcalculatortdd.main;
 
 public class StringCalculator {
-    private static final String delimiters = "[,\n]";
+    private String delimiters = "[,\n]";
 
     private boolean isTextEmpty(String numbers) {
         return numbers.isEmpty();
@@ -14,17 +14,40 @@ public class StringCalculator {
     private int calculateSum(String... numbers) {
         int sum = 0;
 
-        for(String number : numbers)
-            sum += convertToInteger(number);
+        for(String number : numbers) {
+            if(isNumeric(number))
+                sum += convertToInteger(number);
+        }
 
         return sum;
     }
 
-    public int Add(String numbers) {
-        String[] numberList = numbers.split(delimiters);
+    private boolean isNumeric(String line) {
+        try {
+            Integer.parseInt(line);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 
+    private void setDelimiters(String numbers) {
+        if(isTextEmpty(numbers)) delimiters = "[,\n]";
+        if(numbers.startsWith("//")) {
+            String customDelimiter = numbers.substring(2, 3);
+            delimiters = "[" + customDelimiter + "\n]";
+        } else {
+            delimiters = "[,\n]";
+        }
+    }
+
+    public int Add(String numbers) {
         if(isTextEmpty(numbers))
             return 0;
+
+        setDelimiters(numbers);
+        String[] numberList = numbers.split(delimiters);
+
         if(numbers.length() == 1)
             return convertToInteger(numbers);
         else

@@ -45,4 +45,11 @@ public class StringCalculatorTest {
         AssertJUnit.assertEquals(15, calculator.Add("4,5\n6"));
         AssertJUnit.assertEquals(10, calculator.Add("1\n2\n3\n4"));
     }
+
+    // Test for custom delimiters
+    public void numbersSeperatedByCustomDelimitersReturnsSum() {
+        AssertJUnit.assertEquals(3, calculator.Add("//;\n1;2"));
+        AssertJUnit.assertEquals(15, calculator.Add("//;\n4;5;6"));
+        AssertJUnit.assertEquals(15, calculator.Add("//?\n4?5?6"));
+    }
 }
