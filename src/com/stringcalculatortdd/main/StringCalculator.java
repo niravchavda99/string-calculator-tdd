@@ -6,14 +6,17 @@ public class StringCalculator {
     private String delimiters = ",|\n";
     private static int calledCount = 0;
 
+    // Checks if the string is empty or not
     private boolean isTextEmpty(String numbers) {
         return numbers.isEmpty();
     }
 
+    // converts a given string to integer
     private int convertToInteger(String number) {
         return Integer.parseInt(number);
     }
 
+    // Calculates the sum of numbers in given array
     private int calculateSum(String... numbers) throws NegativeNumberException {
         checkNegativeNumbers(numbers);
 
@@ -30,6 +33,7 @@ public class StringCalculator {
         return sum;
     }
 
+    // checks if a string is numeric or not
     private boolean isNumeric(String line) {
         try {
             Integer.parseInt(line);
@@ -39,21 +43,25 @@ public class StringCalculator {
         return true;
     }
 
+    // Set delimiters variable based on delimiters provided
+    // or default delimiters
     private void setDelimiters(String numbers) {
         if(isTextEmpty(numbers)) delimiters = ",|\n";
         if(numbers.startsWith("//")) {
-            String[] customDelimiters = numbers.substring(2, numbers.indexOf('\n')).split("[|]|\n");
+            String[] customDelimiters = numbers.substring(2, numbers.indexOf('\n')).split("\\[([^\\]]+)");
 
             delimiters = "";
             for(String customDelimiter : customDelimiters)
                 delimiters += customDelimiter + "|";
 
             delimiters += "\n";
+            System.out.println(delimiters);
         } else {
             delimiters = ",|\n";
         }
     }
 
+    // Check for all negative numbers in the array
     private void checkNegativeNumbers(String... numbers) throws NegativeNumberException {
         ArrayList<String> negativeNumbers = new ArrayList<>();
 
@@ -65,6 +73,7 @@ public class StringCalculator {
         }
     }
 
+    // Add method
     public int Add(String numbers) throws NegativeNumberException {
         ++calledCount;
 

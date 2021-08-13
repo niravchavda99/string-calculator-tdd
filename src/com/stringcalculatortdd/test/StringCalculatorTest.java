@@ -83,4 +83,14 @@ public class StringCalculatorTest {
     public void numbersSeperatedByMultipleLengthDelimitersReturnsSum() throws NegativeNumberException {
         AssertJUnit.assertEquals(6, calculator.Add("//[***]\n1***2***3"));
     }
+
+    // Test for multiple single-length delimiters
+    public void numbersSeperatedByMultipleSingleLengthDelimitersReturnsSum() throws NegativeNumberException {
+        AssertJUnit.assertEquals(6, calculator.Add("//[*][%]\n1*2%3"));
+    }
+
+    // Test for multiple multiple-length delimiters
+    public void numbersSeperatedByMultipleMultipleDelimitersReturnsSum() throws NegativeNumberException {
+        AssertJUnit.assertEquals(6, calculator.Add("//[**][%%]\n1**2%%3"));
+    }
 }
