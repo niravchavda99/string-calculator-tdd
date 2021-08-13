@@ -1,6 +1,8 @@
 package com.stringcalculatortdd.main;
 
 public class StringCalculator {
+    private static final String delimiters = "[,\n]";
+
     private boolean isTextEmpty(String numbers) {
         return numbers.isEmpty();
     }
@@ -19,7 +21,7 @@ public class StringCalculator {
     }
 
     public int Add(String numbers) {
-        String[] numberList = numbers.split(",");
+        String[] numberList = numbers.split(delimiters);
 
         if(isTextEmpty(numbers))
             return 0;

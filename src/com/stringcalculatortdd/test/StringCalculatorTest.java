@@ -38,4 +38,11 @@ public class StringCalculatorTest {
         AssertJUnit.assertEquals(15, calculator.Add("4,5,6"));
         AssertJUnit.assertEquals(10, calculator.Add("1,2,3,4"));
     }
+
+    // Test for comma & newline seperated number input
+    public void numbersSeperatedByCommaAndNewlineReturnsSum() {
+        AssertJUnit.assertEquals(6, calculator.Add("1\n2,3"));
+        AssertJUnit.assertEquals(15, calculator.Add("4,5\n6"));
+        AssertJUnit.assertEquals(10, calculator.Add("1\n2\n3\n4"));
+    }
 }
