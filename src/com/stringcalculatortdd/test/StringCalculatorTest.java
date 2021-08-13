@@ -6,6 +6,8 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
 
+import java.util.Calendar;
+
 @Test
 public class StringCalculatorTest {
     StringCalculator calculator;
@@ -60,5 +62,15 @@ public class StringCalculatorTest {
         calculator.Add("-5");
         calculator.Add("1,-5");
         calculator.Add("1,5,-9");
+    }
+
+    // Test for getting called count
+    public void getCalledConuntReturnsCount() throws NegativeNumberException {
+        StringCalculator calci = new StringCalculator();
+        calci.Add("5");
+        calci.Add("1,5");
+        calci.Add("1,5,9");
+
+        AssertJUnit.assertEquals(3, calci.getCalledCount());
     }
 }

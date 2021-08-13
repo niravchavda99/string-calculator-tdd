@@ -68,4 +68,8 @@ public class StringCalculator {
         else
             return calculateSum(numberList);
     }
+
+    public int getCalledCount() {
+        return 0;
+    }
 }
