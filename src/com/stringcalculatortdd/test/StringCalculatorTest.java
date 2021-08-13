@@ -18,4 +18,10 @@ public class StringCalculatorTest {
     public void returnsZeroForEmptyString() {
         AssertJUnit.assertEquals(0, calculator.Add(""));
     }
+
+    public void singleNumberReturnsItself() {
+        AssertJUnit.assertEquals(1, calculator.Add("1"));
+        AssertJUnit.assertEquals(2, calculator.Add("2"));
+        AssertJUnit.assertEquals(7, calculator.Add("7"));
+    }
 }
