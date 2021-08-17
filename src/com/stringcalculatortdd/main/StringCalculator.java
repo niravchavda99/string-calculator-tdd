@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 public class StringCalculator {
     private String delimiters = ",|\n";
-    private static int calledCount = 0;
+    private int calledCount = 0;
 
     // Checks if the string is empty or not
-    private boolean isTextEmpty(String numbers) {
+    private static boolean isTextEmpty(String numbers) {
         return numbers.isEmpty();
     }
 
     // converts a given string to integer
-    private int convertToInteger(String number) {
+    private static int convertToInteger(String number) {
         return Integer.parseInt(number);
     }
 
     // Calculates the sum of numbers in given array
-    private int calculateSum(String... numbers) throws NegativeNumberException {
+    private static int calculateSum(String... numbers) throws NegativeNumberException {
         checkNegativeNumbers(numbers);
 
         int sum = 0;
@@ -34,7 +34,7 @@ public class StringCalculator {
     }
 
     // checks if a string is numeric or not
-    private boolean isNumeric(String line) {
+    private static boolean isNumeric(String line) {
         try {
             Integer.parseInt(line);
         } catch (NumberFormatException e) {
@@ -47,12 +47,14 @@ public class StringCalculator {
     // or default delimiters
     private void setDelimiters(String numbers) {
         if(isTextEmpty(numbers)) delimiters = ",|\n";
+
         if(numbers.startsWith("//")) {
-            String[] customDelimiters = numbers.substring(2, numbers.indexOf('\n')).split("\\[([^\\]]+)");
+            String[] customDelimiters = numbers.substring(2, numbers.indexOf('\n')).split("[\\[\\]]");
 
             delimiters = "";
             for(String customDelimiter : customDelimiters)
-                delimiters += customDelimiter + "|";
+                if(!customDelimiter.isEmpty())
+                    delimiters += "\\Q" + customDelimiter + "\\E" + "|";
 
             delimiters += "\n";
         } else {
@@ -61,7 +63,7 @@ public class StringCalculator {
     }
 
     // Check for all negative numbers in the array
-    private void checkNegativeNumbers(String... numbers) throws NegativeNumberException {
+    private static void checkNegativeNumbers(String... numbers) throws NegativeNumberException {
         ArrayList<String> negativeNumbers = new ArrayList<>();
 
         for(String number : numbers)

@@ -92,5 +92,7 @@ public class StringCalculatorTest {
     // Test for multiple multiple-length delimiters
     public void numbersSeperatedByMultipleMultipleDelimitersReturnsSum() throws NegativeNumberException {
         AssertJUnit.assertEquals(6, calculator.Add("//[**][%%]\n1**2%%3"));
+        AssertJUnit.assertEquals(600, calculator.Add("//[***][%%%]\n100***200%%%300"));
+        AssertJUnit.assertEquals(500, calculator.Add("//[###][@@@]\n1001@@@200###300"));
     }
 }
